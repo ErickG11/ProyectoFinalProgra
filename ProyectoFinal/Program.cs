@@ -37,6 +37,11 @@ builder.Services.AddControllersWithViews(options => {
 });
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ProyectoFinalContext>();
+    context.InicializarDatos(); // Llama al método para inicializar datos
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

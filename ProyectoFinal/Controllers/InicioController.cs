@@ -7,9 +7,11 @@ using ProyectoFinal.Servicios.Contrato;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProyectoFinal.Controllers
 {
+    
     public class InicioController : Controller
     {
         private readonly IClienteService _clienteServicio;

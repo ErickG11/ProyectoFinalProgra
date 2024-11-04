@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProyectoFinal.Migrations
 {
     [DbContext(typeof(ProyectoFinalContext))]
-    [Migration("20241103031506_PrimeraMigracion")]
+    [Migration("20241104221634_PrimeraMigracion")]
     partial class PrimeraMigracion
     {
         /// <inheritdoc />

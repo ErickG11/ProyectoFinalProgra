@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace ProyectoFinal.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -31,6 +31,10 @@ namespace ProyectoFinal.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult IniciarSesion()
+        {
+            return View();
         }
         public async Task<IActionResult> CerrarSesion()
         {
