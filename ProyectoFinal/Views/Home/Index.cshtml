@@ -1,9 +1,184 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<ProyectoFinal.Models.Producto>
+
+@{
+    ViewData["Title"] = "Tienda de Ropa - Productos";
 }
 
-<div class="text-center">
-    <h1>Tienda de Ropa</h1>
+<!-- Título llamativo -->
+<h1 class="store-title">JEB</h1>
 
-  
+<!-- Imagen Banner Horizontal centrada y ajustada -->
+<div class="banner-container">
+    <img src="~/images/imagenPrinccipal.jpg" alt="Banner JEB" class="banner-image" />
 </div>
+
+<!-- Contenedor para el párrafo y el carrusel -->
+<div class="content-container">
+    <!-- Párrafo explicativo -->
+    <div class="description" style="flex: 1; display: flex; align-items: center; padding-right: 20px;">
+        <p class="styled-text">JEB es una compañía de ropa dedicada a aquellos que buscan sentirse bien con su apariencia. Nuestra misión es ofrecer prendas llamativas y elegantes que reflejen la personalidad de quienes las usan. Creemos que cada outfit puede ser una declaración de estilo y queremos que cada cliente se sienta único y seguro de sí mismo.</p>
+    </div>
+
+    <!-- Carrusel de imágenes -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false" style="flex: 1; max-height: 50vh;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/images/carrusel1.jpg" class="d-block w-100" alt="..." style="height: 50vh; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/carrusel2.jpg" class="d-block w-100" alt="..." style="height: 50vh; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/carrusel3.jpg" class="d-block w-100" alt="..." style="height: 50vh; object-fit: cover;">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="color: black;">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="color: black;">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- Grid de productos -->
+<div class="product-grid">
+    @foreach (var producto in Model)
+    {
+        <div class="product-card">
+            <h3>@producto.Nombre</h3> <!-- Nombre del producto en primer lugar -->
+            <img src="@producto.ImagenUrl" alt="@producto.Nombre" class="product-image" />
+            <p>@producto.Descripcion</p>
+            <p>Precio: $@producto.Precio</p>
+            <button class="add-to-cart-button">Añadir al Carrito</button>
+        </div>
+    }
+</div>
+
+<!-- Estilos personalizados -->
+<style>
+    /* Contenedor para el banner */
+    .banner-container {
+        display: flex;
+        justify-content: center; /* Centra el banner horizontalmente */
+        margin: 20px 0; /* Espacio superior e inferior */
+    }
+
+    /* Estilo de la imagen del banner */
+    .banner-image {
+        width: 100%; /* Ancho completo */
+        max-width: 1200px; /* Ancho máximo del banner */
+        height: auto; /* Altura automática */
+        max-height: 200px; /* Limitar altura máxima del banner */
+        object-fit: cover; /* Mantiene la proporción de la imagen */
+    }
+
+    /* Contenedor para párrafo y carrusel */
+    .content-container {
+        display: flex; /* Utiliza flexbox para organizar el contenido */
+        align-items: center; /* Alinea verticalmente el contenido al centro */
+        margin: 20px;
+    }
+
+    /* Estilo del párrafo */
+    .description {
+        flex: 1; /* Permite que el párrafo use el espacio disponible */
+        display: flex; /* Usa flexbox para centrar el texto */
+        align-items: center; /* Centra verticalmente el contenido */
+        justify-content: center; /* Centra horizontalmente el contenido */
+        padding-right: 20px; /* Espacio a la derecha del párrafo */
+    }
+
+    /* Estilo del texto con diseño */
+    .styled-text {
+        font-size: 1.2rem; /* Tamaño de fuente para mayor legibilidad */
+        line-height: 1.5; /* Espaciado entre líneas */
+        text-align: justify; /* Justifica el texto */
+        font-family: 'Georgia', serif; /* Cambia la fuente a una serif */
+        color: #333; /* Color gris oscuro */
+        text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+        margin: 0; /* Elimina el margen del párrafo */
+    }
+
+    /* Estilo del carrusel */
+    .carousel-inner img {
+        width: 100%;
+        height: 50vh; /* Asegura que la imagen mantenga la altura del carrusel */
+        object-fit: cover; /* Asegura que la imagen llene el contenedor sin deformarse */
+    }
+
+    /* Estilo del título */
+    .store-title {
+        font-family: 'Arial Black', sans-serif;
+        font-size: 4rem;
+        color: #000; /* Color negro */
+        text-align: center;
+        margin: 30px 0;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+        position: relative;
+    }
+
+        .store-title::before, .store-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 5px;
+            background-color: #4CAF50;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .store-title::before {
+            left: -60px; /* Línea decorativa a la izquierda */
+        }
+
+        .store-title::after {
+            right: -60px; /* Línea decorativa a la derecha */
+        }
+
+    /* Grid de productos */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 20px;
+    }
+
+    .product-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .add-to-cart-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        .add-to-cart-button:hover {
+            background-color: #45a049;
+        }
+</style>
+
