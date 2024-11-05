@@ -43,4 +43,8 @@ using ProyectoFinal.Recursos;
     }
 
 public DbSet<ProyectoFinal.Models.Carrito> Carrito { get; set; } = default!;
+
+public DbSet<ProyectoFinal.Models.Pedido> Pedido { get; set; } = default!;
+
+public DbSet<ProyectoFinal.Models.Pago> Pago { get; set; } = default!;
 }
