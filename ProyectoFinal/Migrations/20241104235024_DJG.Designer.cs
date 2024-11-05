@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProyectoFinal.Migrations
 {
     [DbContext(typeof(ProyectoFinalContext))]
-    partial class ProyectoFinalContextModelSnapshot : ModelSnapshot
+    [Migration("20241104235024_DJG")]
+    partial class DJG
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,32 +54,6 @@ namespace ProyectoFinal.Migrations
                     b.HasKey("IdAdministrador");
 
                     b.ToTable("Administrador");
-                });
-
-            modelBuilder.Entity("ProyectoFinal.Models.Carrito", b =>
-                {
-                    b.Property<int>("IdCarrito")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCarrito"));
-
-                    b.Property<int>("Cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdCarrito");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("ProductoId");
-
-                    b.ToTable("Carrito");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.Categoria", b =>
@@ -155,25 +132,6 @@ namespace ProyectoFinal.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("Producto");
-                });
-
-            modelBuilder.Entity("ProyectoFinal.Models.Carrito", b =>
-                {
-                    b.HasOne("ProyectoFinal.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProyectoFinal.Models.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-
-                    b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("ProyectoFinal.Models.Producto", b =>

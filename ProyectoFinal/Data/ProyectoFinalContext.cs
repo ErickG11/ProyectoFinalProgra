@@ -41,4 +41,6 @@ using ProyectoFinal.Recursos;
 
         }
     }
+
+public DbSet<ProyectoFinal.Models.Carrito> Carrito { get; set; } = default!;
 }
