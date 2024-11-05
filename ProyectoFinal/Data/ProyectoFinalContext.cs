@@ -24,7 +24,7 @@ using ProyectoFinal.Recursos;
     public void InicializarDatos()
     {
         // Verifica si ya hay administradores en la base de datos
-        if (!Administrador.Any())
+        /*if (!Administrador.Any())
         {
             // Crear un nuevo administrador
             var administrador = new Administrador
@@ -39,7 +39,7 @@ using ProyectoFinal.Recursos;
             SaveChanges(); // Guarda los cambios en la base de datos
 
 
-        }
+        }*/
     }
 
 public DbSet<ProyectoFinal.Models.Carrito> Carrito { get; set; } = default!;
