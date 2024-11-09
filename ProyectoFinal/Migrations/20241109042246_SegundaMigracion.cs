@@ -5,7 +5,7 @@
 namespace ProyectoFinal.Migrations
 {
     /// <inheritdoc />
-    public partial class DJG : Migration
+    public partial class SegundaMigracion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

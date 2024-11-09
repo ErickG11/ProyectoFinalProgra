@@ -24,22 +24,22 @@ using ProyectoFinal.Recursos;
     public void InicializarDatos()
     {
         // Verifica si ya hay administradores en la base de datos
-        /*if (!Administrador.Any())
+        if (!Administrador.Any())
         {
-            // Crear un nuevo administrador
+            
             var administrador = new Administrador
             {
-                Nombre = "Admin", // Cambia estos valores según tus necesidades
+                Nombre = "Admin", 
                 Apellido = "Admin",
                 Correo = "admin@admin.com",
-                Contraseña = Utilidades.EncriptarContraseña("123") // Asegúrate de encriptar la contraseña
+                Contraseña = Utilidades.EncriptarContraseña("123") 
             };
 
             Administrador.Add(administrador);
-            SaveChanges(); // Guarda los cambios en la base de datos
+            SaveChanges(); 
 
 
-        }*/
+        }
     }
 
 public DbSet<ProyectoFinal.Models.Carrito> Carrito { get; set; } = default!;

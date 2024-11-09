@@ -4,22 +4,21 @@
     ViewData["Title"] = "Tienda de Ropa - Productos";
 }
 
-<!-- Título llamativo -->
+
 <h1 class="store-title">JEB</h1>
 
-<!-- Imagen Banner Horizontal centrada y ajustada -->
 <div class="banner-container">
     <img src="~/images/imagenPrinccipal.jpg" alt="Banner JEB" class="banner-image" />
 </div>
 
-<!-- Contenedor para el párrafo y el carrusel -->
+
 <div class="content-container">
-    <!-- Párrafo explicativo -->
+    
     <div class="description" style="flex: 1; display: flex; align-items: center; padding-right: 20px;">
         <p class="styled-text">JEB es una compañía de ropa dedicada a aquellos que buscan sentirse bien con su apariencia. Nuestra misión es ofrecer prendas llamativas y elegantes que reflejen la personalidad de quienes las usan. Creemos que cada outfit puede ser una declaración de estilo y queremos que cada cliente se sienta único y seguro de sí mismo.</p>
     </div>
 
-    <!-- Carrusel de imágenes -->
+    
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false" style="flex: 1; max-height: 50vh;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -48,21 +47,27 @@
     </div>
 </div>
 
-<!-- Grid de productos -->
+
 <div class="product-grid">
     @foreach (var producto in Model)
     {
         <div class="product-card">
-            <h3>@producto.Nombre</h3> <!-- Nombre del producto en primer lugar -->
+            <h3>@producto.Nombre</h3> 
             <img src="@producto.ImagenUrl" alt="@producto.Nombre" class="product-image" />
             <p>@producto.Descripcion</p>
             <p>Precio: $@producto.Precio</p>
-            <button class="add-to-cart-button">Añadir al Carrito</button>
+
+            <form asp-controller="Carritoes" asp-action="Index" method="post">
+                @producto.IdProducto
+                <button type="submit" class="add-to-cart-button">Añadir al Carrito</button>
+            </form>
         </div>
     }
 </div>
 
-<!-- Estilos personalizados -->
+
+
+
 <style>
     /* Contenedor para el banner */
     .banner-container {
@@ -181,4 +186,3 @@
             background-color: #45a049;
         }
 </style>
-

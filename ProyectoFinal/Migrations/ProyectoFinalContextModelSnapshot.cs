@@ -124,6 +124,44 @@ namespace ProyectoFinal.Migrations
                     b.ToTable("Cliente");
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Pago", b =>
+                {
+                    b.Property<int>("IdPago")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPago"));
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("pedidoCodigo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("IdPago");
+
+                    b.HasIndex("pedidoCodigo");
+
+                    b.ToTable("Pago");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Pedido", b =>
+                {
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.HasKey("Codigo");
+
+                    b.HasIndex("IdCliente");
+
+                    b.ToTable("Pedido");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.Producto", b =>
                 {
                     b.Property<int>("IdProducto")
@@ -147,12 +185,17 @@ namespace ProyectoFinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PedidoCodigo")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<float>("Precio")
                         .HasColumnType("real");
 
                     b.HasKey("IdProducto");
 
                     b.HasIndex("CategoriaId");
+
+                    b.HasIndex("PedidoCodigo");
 
                     b.ToTable("Producto");
                 });
@@ -176,6 +219,28 @@ namespace ProyectoFinal.Migrations
                     b.Navigation("Producto");
                 });
 
+            modelBuilder.Entity("ProyectoFinal.Models.Pago", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.Pedido", "pedido")
+                        .WithMany()
+                        .HasForeignKey("pedidoCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("pedido");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Pedido", b =>
+                {
+                    b.HasOne("ProyectoFinal.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
             modelBuilder.Entity("ProyectoFinal.Models.Producto", b =>
                 {
                     b.HasOne("ProyectoFinal.Models.Categoria", "categoria")
@@ -184,7 +249,16 @@ namespace ProyectoFinal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProyectoFinal.Models.Pedido", null)
+                        .WithMany("producto")
+                        .HasForeignKey("PedidoCodigo");
+
                     b.Navigation("categoria");
+                });
+
+            modelBuilder.Entity("ProyectoFinal.Models.Pedido", b =>
+                {
+                    b.Navigation("producto");
                 });
 #pragma warning restore 612, 618
         }

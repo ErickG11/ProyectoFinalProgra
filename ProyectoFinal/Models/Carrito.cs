@@ -8,11 +8,11 @@ namespace ProyectoFinal.Models
         [Key]
         public int IdCarrito { get; set; }
 
-        public Cliente Cliente { get; set; }
+        public Cliente? Cliente { get; set; }
         [ForeignKey("ClienteId")]
         public int ClienteId { get; set; }
 
-        public Producto Producto { get; set; }
+        public Producto? Producto { get; set; }
         [ForeignKey("ProductoId")]
         public int ProductoId { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -49,7 +50,7 @@ namespace ProyectoFinal.Controllers
         public IActionResult Create()
         {
             ViewData["ClienteId"] = new SelectList(_context.Cliente, "IdCliente", "IdCliente");
-            ViewData["ProductoId"] = new SelectList(_context.Producto, "IdProducto", "IdProducto");
+            ViewData["ProductoId"] = new SelectList(_context.Producto, "IdProducto", "Nombre");
             return View();
         }
 
@@ -165,5 +166,7 @@ namespace ProyectoFinal.Controllers
         {
             return _context.Carrito.Any(e => e.IdCarrito == id);
         }
+
+
     }
 }
